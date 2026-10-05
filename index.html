@@ -976,7 +976,7 @@
     }
 
     // Resume Download Handler
-    function triggerResumeDownload() {
+   /** function triggerResumeDownload() {
       const resumeText = `DEEPAK KUMAR
 AML / KYC & Financial Crime Compliance Analyst
 Email: 3dipakk@gmail.com | Phone: +91 9955318900 | Location: Delhi, India
@@ -1005,14 +1005,32 @@ EDUCATION:
 • Master in Computer Application (MCA) | Galgotias University (2021-2023)
 • B.Sc (Computer Application) | Ranchi College (2017-2020)`;
 
-      const blob = new Blob([resumeText], { type: 'text/plain;charset=utf-8;' });
+      const blob = new Blob([https://drive.google.com/file/d/1ySK4kGYdT93e1Yjz1u1edoXetV5jVB9x/view?usp=sharing], { type: 'text/plain;charset=utf-8;' });
       const downloadLink = document.createElement('a');
       downloadLink.href = URL.createObjectURL(blob);
       downloadLink.download = 'Deepak_Kumar_AML_KYC_Analyst_Resume.txt';
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
-    }
+    }**/
+
+    function triggerResumeDownload() {
+  // Convert standard Google Drive view link to direct download endpoint
+  const driveViewUrl = "https://drive.google.com/file/d/1ySK4kGYdT93e1Yjz1u1edoXetV5jVB9x/view?usp=sharing";
+  
+  // Extracts the unique ID from the Drive URL and points to direct export
+  const fileId = driveViewUrl.match(/\/d\/([a-zA-Z0-9_-]+)/)[1];
+  const directDownloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+
+  // Trigger download via dynamic link
+  const link = document.createElement('a');
+  link.href = directDownloadUrl;
+  link.setAttribute('download', '');
+  link.setAttribute('target', '_blank'); // Ensures it opens properly if direct download prompts
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
 
     // Recruiter Form Submission Handler
     function handleFormSubmit(e) {
